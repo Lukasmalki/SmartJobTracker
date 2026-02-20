@@ -10,6 +10,7 @@ function JobApplicationList() {
       try {
         const data = await getJobApplications();
         setApplications(data);
+        console.log(data);
       } catch (err) {
         setError(err.message);
       }
