@@ -1,0 +1,37 @@
+.menu {
+  background: rgb(65, 65, 65);
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: white;
+}
+
+.menu-header {
+  background: rgb(102, 148, 248);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 22px;
+  user-select: none;
+  font-weight: 500;
+}
+
+.smartjob {
+  font-size: 22px;
+}
+
+.tracker {
+  font-size: 12px;
+  margin: 0 0 10px 0;
+}
+
+.menu-buttons {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.dontknow {
+  flex: 2;
+}

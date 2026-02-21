@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getJobApplications } from "../api/jobApplication";
 import JobItem from "../components/JobItem";
-import { Link } from "react-router-dom";
+import SidebarMenu from "../components/SidebarMenu";
 import "../styles/dashboard.css";
 
 function Dashboard() {
@@ -29,13 +29,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-page">
-      <div className="menu">
-        <h2>Dashboard</h2>
-        <Link to="/create">
-          <button>Create New Application</button>
-        </Link>
-      </div>
-
+      <SidebarMenu />
       <div className="overview">
         {applications.map((job) => (
           <JobItem key={job.id} job={job} />
