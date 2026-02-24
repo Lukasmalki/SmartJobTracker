@@ -9,6 +9,7 @@ function Dashboard() {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
 
   const loadApplications = async () => {
     try {
@@ -20,6 +21,14 @@ function Dashboard() {
       setLoading(false);
     }
   };
+
+  const filtered = applications.filter(
+    (item) =>
+      item.company.toLowerCase().includes(search.trim().toLowerCase()) ||
+      item.role.toLowerCase().includes(search.trim().toLowerCase()) ||
+      item.appliedDate.toLowerCase().includes(search.trim().toLowerCase()) ||
+      item.notes.toLowerCase().includes(search.trim().toLowerCase()),
+  );
 
   useEffect(() => {
     loadApplications();
@@ -39,7 +48,13 @@ function Dashboard() {
           </div>
 
           <div className="search">
-            <p>SEARCH</p>
+            <input
+              className="search-input"
+              type="text"
+              placeholder="Search applications..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <button className="new-application-btn">
               <FaPlus /> New Application
             </button>
@@ -47,7 +62,7 @@ function Dashboard() {
         </div>
 
         <div className="applications-overview">
-          {applications.map((job) => (
+          {filtered.map((job) => (
             <JobItem key={job.id} job={job} />
           ))}
         </div>
