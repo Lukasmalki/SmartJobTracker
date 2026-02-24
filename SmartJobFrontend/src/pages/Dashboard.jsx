@@ -3,6 +3,7 @@ import { getJobApplications } from "../api/jobApplication";
 import JobItem from "../components/JobItem";
 import SidebarMenu from "../components/SidebarMenu";
 import "../styles/dashboard.css";
+import { FaPlus } from "react-icons/fa";
 
 function Dashboard() {
   const [applications, setApplications] = useState([]);
@@ -30,10 +31,26 @@ function Dashboard() {
   return (
     <div className="dashboard-page">
       <SidebarMenu />
-      <div className="overview">
-        {applications.map((job) => (
-          <JobItem key={job.id} job={job} />
-        ))}
+
+      <div className="dashboard-container">
+        <div className="applications-title-search">
+          <div className="title">
+            <p>Job Applications</p>
+          </div>
+
+          <div className="search">
+            <p>SEARCH</p>
+            <button className="new-application-btn">
+              <FaPlus /> New Application
+            </button>
+          </div>
+        </div>
+
+        <div className="applications-overview">
+          {applications.map((job) => (
+            <JobItem key={job.id} job={job} />
+          ))}
+        </div>
       </div>
     </div>
   );
