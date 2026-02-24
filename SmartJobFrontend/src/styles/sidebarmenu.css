@@ -1,6 +1,7 @@
 .menu {
   background: rgb(65, 65, 65);
   flex: 0 0 20%;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   height: 100vh;

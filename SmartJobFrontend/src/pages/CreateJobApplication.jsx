@@ -23,7 +23,9 @@ function CreateJobApplication() {
   return (
     <div className="createjobapplication-page">
       <SidebarMenu />
-      <JobForm onSubmit={handleCreate} />
+      <div className="jobform-container">
+        <JobForm onSubmit={handleCreate} />
+      </div>
     </div>
   );
 }
