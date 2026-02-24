@@ -1,5 +1,6 @@
 import "../styles/sidebarmenu.css";
 import { Link } from "react-router-dom";
+import { FaHome, FaPlus, FaSignOutAlt } from "react-icons/fa";
 
 function SidebarMenu() {
   return (
@@ -11,14 +12,29 @@ function SidebarMenu() {
 
       <div className="menu-buttons">
         <Link to="/">
-          <button>Home</button>
+          <div className="button-logo-container">
+            <FaHome className="logo" />
+            <span>Home</span>
+          </div>
         </Link>
         <Link to="/create">
-          <button>Create New Application</button>
+          <div className="button-logo-container">
+            <FaPlus className="logo" />
+            <span>Create New Application</span>
+          </div>
         </Link>
       </div>
 
-      <div className="dontknow">VET INTE ÄN</div>
+      <div className="signout-container">
+        <div className="accountinfo-container">
+          <p className="fullname">Lukas Malki</p>
+          <p className="email">lukasandremalki@hotmail.com</p>
+        </div>
+        <div className="signout">
+          <FaSignOutAlt className="logo" />
+          <span>Sign out</span>
+        </div>
+      </div>
     </div>
   );
 }
