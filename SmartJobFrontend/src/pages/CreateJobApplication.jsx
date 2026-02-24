@@ -1,17 +1,18 @@
 import JobForm from "../components/JobForm";
 import { createJobApplication } from "../api/jobApplication";
-import { useNavigate } from "react-router-dom"; // Om du använder React Router
+import { useNavigate } from "react-router-dom";
+import SidebarMenu from "../components/SidebarMenu";
+import "../styles/createjobapplication.css";
 
 function CreateJobApplication() {
-  const navigate = useNavigate(); // För att gå tillbaka till Dashboard efter submit
+  const navigate = useNavigate();
 
   const handleCreate = async (data) => {
     try {
       const result = await createJobApplication(data);
-      console.log("Created:", result); // Kontrollera res.json()
+      console.log("Created:", result);
       alert("Job application created!");
 
-      // Navigera tillbaka till Dashboard
       navigate("/dashboard");
     } catch (err) {
       console.error(err);
@@ -19,7 +20,12 @@ function CreateJobApplication() {
     }
   };
 
-  return <JobForm onSubmit={handleCreate} />;
+  return (
+    <div className="createjobapplication-page">
+      <SidebarMenu />
+      <JobForm onSubmit={handleCreate} />
+    </div>
+  );
 }
 
 export default CreateJobApplication;
