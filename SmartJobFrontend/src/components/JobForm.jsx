@@ -16,6 +16,10 @@ function JobForm({ initialData = {}, onSubmit }) {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
+      <div className="title">Add application</div>
+
+      <hr className="divider-jobform" />
+
       <div className="company">
         <label>Company</label>
         <input
@@ -65,6 +69,8 @@ function JobForm({ initialData = {}, onSubmit }) {
           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
         />
       </div>
+
+      <hr className="divider-jobform" />
 
       <button className="submit-btn" type="submit">
         Submit
