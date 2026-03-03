@@ -14,7 +14,7 @@ function SidebarMenu() {
         <Link to="/">
           <div className="button-logo-container">
             <FaHome className="logo" />
-            <span>Home</span>
+            <span>Dashboard</span>
           </div>
         </Link>
         <Link to="/create">
