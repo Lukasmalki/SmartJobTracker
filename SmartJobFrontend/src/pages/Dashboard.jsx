@@ -4,6 +4,7 @@ import JobItem from "../components/JobItem";
 import SidebarMenu from "../components/SidebarMenu";
 import "../styles/dashboard.css";
 import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [applications, setApplications] = useState([]);
@@ -55,11 +56,12 @@ function Dashboard() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="new-application-btn">
+            <Link to="/create" className="new-application-btn">
               <FaPlus /> New Application
-            </button>
+            </Link>
           </div>
         </div>
+        <hr className="divider-dashboard" />
 
         <div className="applications-overview">
           {filtered.map((job) => (
