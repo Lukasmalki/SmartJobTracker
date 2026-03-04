@@ -63,5 +63,5 @@ export async function deleteJobApplication(id) {
     throw new Error("Failed to delete application");
   }
   
-  return res.json();
+  return true;
 }

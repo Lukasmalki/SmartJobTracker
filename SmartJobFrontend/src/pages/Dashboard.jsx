@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
-import { getJobApplications } from "../api/jobApplication";
+import {
+  getJobApplications,
+  deleteJobApplication,
+} from "../api/jobApplication";
 import JobItem from "../components/JobItem";
 import SidebarMenu from "../components/SidebarMenu";
 import "../styles/dashboard.css";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ConfirmModal from "../components/ConfirmModal";
 
 function Dashboard() {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState();
 
   const loadApplications = async () => {
     try {
@@ -20,6 +26,23 @@ function Dashboard() {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteJobApplication(id);
+      setApplications((prev) => prev.filter((app) => app.id !== id));
+    } catch (err) {
+      console.error("Failed to delete: ", err);
+    } finally {
+      setIsModalOpen(false);
+      setSelectedId(null);
     }
   };
 
@@ -65,10 +88,18 @@ function Dashboard() {
 
         <div className="applications-overview">
           {filtered.map((job) => (
-            <JobItem key={job.id} job={job} />
+            <JobItem key={job.id} job={job} onDelete={openDeleteModal} />
           ))}
         </div>
       </div>
+
+      {isModalOpen && (
+        <ConfirmModal
+          id={selectedId}
+          onConfirm={() => handleDelete(selectedId)}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 }
