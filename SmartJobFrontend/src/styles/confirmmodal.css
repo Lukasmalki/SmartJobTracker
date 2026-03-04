@@ -1,0 +1,68 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.confirm-modal {
+  background: white;
+  padding: 20px 50px;
+  border-radius: 12px;
+  /* min-width: 300px; */
+}
+
+.warning-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.warning-triangle {
+    color: rgb(197, 0, 0);
+    font-size: 52px;
+}
+
+.warning-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.warning-text {
+    color: rgb(91, 91, 91);
+}
+
+.divider-confirm-modal {
+    border: none;
+    height: 1px;
+    background: #d8d8d8;
+}
+
+.cancel-delete-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-delete-btns button {
+    height: 38px;
+    padding: 0 42px;
+    border-radius: 5px;
+    border: 1px solid rgb(230, 230, 230);
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.confirm-delete-btn {
+    background: rgb(197, 0, 0);
+    color: white;
+}
+
+.cancel-btn {
+    color: rgb(68, 68, 68);
+}
