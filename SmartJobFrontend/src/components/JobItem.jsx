@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/jobitem.css";
 
-function JobItem({ job }) {
+function JobItem({ job, onDelete }) {
   return (
     <div className="job-item">
       <div className="job-item-info">
@@ -15,7 +15,9 @@ function JobItem({ job }) {
         <Link to={`/edit/${job.id}`} className="btn edit">
           Edit
         </Link>
-        <button className="btn delete">Delete</button>
+        <button onClick={() => onDelete(job.id)} className="btn delete">
+          Delete
+        </button>
       </div>
     </div>
   );

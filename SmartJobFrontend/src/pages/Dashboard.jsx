@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { getJobApplications } from "../api/jobApplication";
+import {
+  getJobApplications,
+  deleteJobApplication,
+} from "../api/jobApplication";
 import JobItem from "../components/JobItem";
 import SidebarMenu from "../components/SidebarMenu";
 import "../styles/dashboard.css";
@@ -20,6 +23,15 @@ function Dashboard() {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteJobApplication(id);
+      setApplications((prev) => prev.filter((app) => app.id !== id));
+    } catch (err) {
+      console.error("Failed to delete: ", err);
     }
   };
 
@@ -65,7 +77,7 @@ function Dashboard() {
 
         <div className="applications-overview">
           {filtered.map((job) => (
-            <JobItem key={job.id} job={job} />
+            <JobItem key={job.id} job={job} onDelete={handleDelete} />
           ))}
         </div>
       </div>
