@@ -12,7 +12,7 @@ function JobItem({ job, onDelete }) {
       </div>
 
       <div className="edit-delete-btns">
-        <Link to={`/edit/${job.id}`} className="btn edit">
+        <Link to={`/job/${job.id}`} className="btn edit">
           Edit
         </Link>
         <button onClick={() => onDelete(job.id)} className="btn delete">
