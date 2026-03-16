@@ -15,7 +15,7 @@ COPY . ./
 RUN dotnet publish -c Release -o /app/publish
 
 # 2️⃣ Bygg runtime image (mindre och snabbare)
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 
 # Kopiera från build steget
