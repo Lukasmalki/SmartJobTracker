@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import CreateJobApplication from "./pages/CreateJobApplication";
-import EditJobApplication from "./pages/EditJobApplication";
+import JobDetailsApplication from "./pages/JobDetailsApplication";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         {/* Sidor */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create" element={<CreateJobApplication />} />
-        <Route path="/edit/:id" element={<EditJobApplication />} />
+        <Route path="/job/:id" element={<JobDetailsApplication />} />
       </Routes>
     </Router>
   );
