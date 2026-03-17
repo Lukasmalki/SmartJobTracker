@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace SmartJobBackend
 {
@@ -21,6 +23,9 @@ namespace SmartJobBackend
 						  .AllowAnyHeader()
 						  .AllowAnyMethod());
 			});
+
+			builder.Services.AddDbContext<AppDbContext>(options =>
+			options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 			var app = builder.Build();
 
