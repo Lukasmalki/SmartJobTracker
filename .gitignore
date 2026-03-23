@@ -26,8 +26,6 @@
 packages/
 project.lock.json
 
-
-appsettings.json
 appsettings.Development.json
 
 
