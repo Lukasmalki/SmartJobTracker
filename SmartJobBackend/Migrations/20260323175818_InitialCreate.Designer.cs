@@ -12,7 +12,7 @@ using SmartJobBackend;
 namespace SmartJobBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260316213052_InitialCreate")]
+    [Migration("20260323175818_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

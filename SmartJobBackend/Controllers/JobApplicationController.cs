@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SmartJobBackend.DTOs;
 using SmartJobBackend.Models;
 
@@ -10,21 +11,30 @@ namespace SmartJobBackend.Controllers
 	[ApiController]
 	public class JobapplicationController : ControllerBase
 	{
-		private static readonly List<JobApplication> Applications = new();
+		private readonly AppDbContext _db;
+		//private static readonly List<JobApplication> Applications = new();
+
+		public JobapplicationController(AppDbContext db)
+		{
+			_db = db;
+		}
 
 		//GET
 		[HttpGet]
-		public ActionResult<IEnumerable<JobApplicationResponse>> GetAll()
+		public async Task<ActionResult<IEnumerable<JobApplicationResponse>>> GetAll()
 		{
-			var result = Applications.Select(a => new JobApplicationResponse(
-				a.Id, a.Company, a.Role, a.Status, a.AppliedDate, a.Notes
-			));
+			var result = await _db.JobApplications
+				.Select(a => new JobApplicationResponse(
+					a.Id, a.Company, a.Role, a.Status, a.AppliedDate, a.Notes
+				))
+				.ToListAsync();
+
 			return Ok(result);
 		}
 
 		//POST
 		[HttpPost]
-		public ActionResult<JobApplicationResponse> Create([FromBody] CreateJobApplicationRequest request)
+		public async Task<ActionResult<JobApplicationResponse>> Create([FromBody] CreateJobApplicationRequest request)
 		{
 			var app = new JobApplication
 			{
@@ -34,7 +44,8 @@ namespace SmartJobBackend.Controllers
 				Notes = request.Notes
 			};
 
-			Applications.Add(app);
+			_db.JobApplications.Add(app);
+			await _db.SaveChangesAsync();
 
 			var response = new JobApplicationResponse(
 				app.Id, app.Company, app.Role, app.Status, app.AppliedDate, app.Notes
@@ -45,9 +56,9 @@ namespace SmartJobBackend.Controllers
 
 		// PUT: api/jobapplication/{id}
 		[HttpPut("{id}")]
-		public ActionResult<JobApplicationResponse> Update(Guid id, [FromBody] UpdateJobApplicationRequest request)
+		public async Task<ActionResult<JobApplicationResponse>> Update(Guid id, [FromBody] UpdateJobApplicationRequest request)
 		{
-			var app = Applications.FirstOrDefault(a => a.Id == id);
+			var app = await _db.JobApplications.FindAsync(id);
 
 			if (app == null)
 			{
@@ -60,6 +71,8 @@ namespace SmartJobBackend.Controllers
 			app.AppliedDate = request.AppliedDate;
 			app.Notes = request.Notes;
 
+			await _db.SaveChangesAsync();
+
 			var response = new JobApplicationResponse(
 				app.Id, app.Company, app.Role, app.Status, app.AppliedDate, app.Notes
 			);
@@ -69,16 +82,17 @@ namespace SmartJobBackend.Controllers
 
 		// DELETE: api/jobapplication/{id}
 		[HttpDelete("{id}")]
-		public ActionResult Delete(Guid id)
+		public async Task<ActionResult> Delete(Guid id)
 		{
-			var app = Applications.FirstOrDefault(a => a.Id == id);
+			var app = await _db.JobApplications.FindAsync(id);
 
 			if (app == null)
 			{
 				return NotFound($"No job application found with Id {id}");
 			}
 
-			Applications.Remove(app);
+			_db.JobApplications.Remove(app);
+			await _db.SaveChangesAsync();
 
 			return NoContent(); // 204 = lyckad borttagning utan body
 		}

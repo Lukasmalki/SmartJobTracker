@@ -1,9 +1,8 @@
-const API_BASE = "https://localhost:7111/api/jobapplication";
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 // GET ALL
 export async function getJobApplications() {
-  const res = await fetch(API_BASE);
+  const res = await fetch(API_URL);
   if (!res.ok) {
     throw new Error("Failed to fetch applications");
   }
@@ -12,7 +11,7 @@ export async function getJobApplications() {
 
 // GET ONE
 export async function getJobApplicationById(id) {
-  const res = await fetch(`${API_BASE}/${id}`);
+  const res = await fetch(`${API_URL}/${id}`);
   if (!res.ok) {
     throw new Error("Failed to fetch applications");
   }
@@ -22,7 +21,7 @@ export async function getJobApplicationById(id) {
 
 // POST
 export async function createJobApplication(data) {
-  const res = await fetch(API_BASE, {
+  const res = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -40,7 +39,7 @@ export async function createJobApplication(data) {
 
 // PUT
 export async function updateJobApplication(id, data) {
-  const res = await fetch(`${API_BASE}/${id}`, {
+  const res = await fetch(`${API_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -55,7 +54,7 @@ export async function updateJobApplication(id, data) {
 
 // DELETE
 export async function deleteJobApplication(id) {
-  const res = await fetch(`${API_BASE}/${id}`, {
+  const res = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
   });
 
