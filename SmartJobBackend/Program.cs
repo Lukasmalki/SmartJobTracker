@@ -29,13 +29,14 @@ namespace SmartJobBackend
 
 			var app = builder.Build();
 
+			app.MapGet("/", () => "API is running");
+
 			if (app.Environment.IsDevelopment())
 			{
 				app.UseSwagger();
 				app.UseSwaggerUI();
 			}
 
-			app.UseHttpsRedirection();
 			app.UseCors("AllowReact");
 			app.UseAuthorization();
 			app.MapControllers();
