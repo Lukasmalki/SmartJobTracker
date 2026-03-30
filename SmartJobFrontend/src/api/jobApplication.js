@@ -1,8 +1,13 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = `${import.meta.env.VITE_API_URL}/jobapplication`;
+
+const authHeaders = (token) => ({
+  "Content-Type": application/json,
+  "Authorization": `Bearer ${token}`
+})
 
 // GET ALL
-export async function getJobApplications() {
-  const res = await fetch(API_URL);
+export async function getJobApplications(token) {
+  const res = await fetch(API_URL, { headers: authHeaders(token)} );
   if (!res.ok) {
     throw new Error("Failed to fetch applications");
   }
@@ -10,8 +15,8 @@ export async function getJobApplications() {
 }
 
 // GET ONE
-export async function getJobApplicationById(id) {
-  const res = await fetch(`${API_URL}/${id}`);
+export async function getJobApplicationById(id, token) {
+  const res = await fetch(`${API_URL}/${id}`, { headers: authHeaders(token) });
   if (!res.ok) {
     throw new Error("Failed to fetch applications");
   }
@@ -20,12 +25,10 @@ export async function getJobApplicationById(id) {
 
 
 // POST
-export async function createJobApplication(data) {
+export async function createJobApplication(data, token) {
   const res = await fetch(API_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: authHeaders(token),
     body: JSON.stringify(data),
   });
 
@@ -38,10 +41,10 @@ export async function createJobApplication(data) {
 
 
 // PUT
-export async function updateJobApplication(id, data) {
+export async function updateJobApplication(id, data, token) {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeaders(token),
     body: JSON.stringify(data),
   });
 
@@ -53,9 +56,10 @@ export async function updateJobApplication(id, data) {
 }
 
 // DELETE
-export async function deleteJobApplication(id) {
+export async function deleteJobApplication(id, token) {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
+    headers: authHeaders(token),
   });
 
   if (!res.ok) {

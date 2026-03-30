@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { getJobApplications } from "../api/jobApplication";
+import { useAuth } from "../context/AuthContext";
 
 function JobApplicationList() {
+  const { token } = useAuth();
   const [applications, setApplications] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function loadApplications() {
       try {
-        const data = await getJobApplications();
+        const data = await getJobApplications(token);
         setApplications(data);
         console.log(data);
       } catch (err) {
@@ -17,7 +19,7 @@ function JobApplicationList() {
     }
 
     loadApplications();
-  }, []);
+  }, [token]);
 
   return (
     <div>
