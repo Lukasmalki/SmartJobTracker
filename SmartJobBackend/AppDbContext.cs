@@ -8,7 +8,7 @@ namespace SmartJobBackend
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-
 		public DbSet<JobApplication> JobApplications { get; set; }
+		public DbSet<User> Users { get; set; }
 	}
 }
