@@ -7,7 +7,6 @@ using static SmartJobBackend.DTOs.AuthDTOs;
 
 namespace SmartJobBackend.Controllers
 {
-	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class AuthController : ControllerBase
