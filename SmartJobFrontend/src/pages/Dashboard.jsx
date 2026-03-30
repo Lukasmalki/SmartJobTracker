@@ -9,8 +9,10 @@ import "../styles/dashboard.css";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ConfirmModal from "../components/ConfirmModal";
+import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
+  const { token } = useAuth();
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +22,7 @@ function Dashboard() {
 
   const loadApplications = async () => {
     try {
-      const data = await getJobApplications();
+      const data = await getJobApplications(token);
       setApplications(data);
     } catch (err) {
       setError(err.message);
@@ -36,7 +38,7 @@ function Dashboard() {
 
   const handleDelete = async (id) => {
     try {
-      await deleteJobApplication(id);
+      await deleteJobApplication(id, token);
       setApplications((prev) => prev.filter((app) => app.id !== id));
     } catch (err) {
       console.error("Failed to delete: ", err);
@@ -56,7 +58,7 @@ function Dashboard() {
 
   useEffect(() => {
     loadApplications();
-  }, []);
+  }, [token]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;

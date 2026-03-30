@@ -3,13 +3,15 @@ import { createJobApplication } from "../api/jobApplication";
 import { useNavigate } from "react-router-dom";
 import SidebarMenu from "../components/SidebarMenu";
 import "../styles/createjobapplication.css";
+import { useAuth } from "../context/AuthContext";
 
 function CreateJobApplication() {
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const handleCreate = async (data) => {
     try {
-      const result = await createJobApplication(data);
+      const result = await createJobApplication(data, token);
       console.log("Created:", result);
       alert("Job application created!");
 
