@@ -1,7 +1,7 @@
 const API_URL = `${import.meta.env.VITE_API_URL}/jobapplication`;
 
 const authHeaders = (token) => ({
-  "Content-Type": application/json,
+  "Content-Type": "application/json",
   "Authorization": `Bearer ${token}`
 })
 

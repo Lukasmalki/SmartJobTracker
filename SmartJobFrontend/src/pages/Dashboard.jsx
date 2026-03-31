@@ -14,6 +14,8 @@ import { useAuth } from "../context/AuthContext";
 function Dashboard() {
   const { token } = useAuth();
   const [applications, setApplications] = useState([]);
+  console.log("applications state satt");
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
@@ -23,8 +25,10 @@ function Dashboard() {
   const loadApplications = async () => {
     try {
       const data = await getJobApplications(token);
+      console.log(data);
       setApplications(data);
     } catch (err) {
+      console.error("Felmeddelande", err.message);
       setError(err.message);
     } finally {
       setLoading(false);

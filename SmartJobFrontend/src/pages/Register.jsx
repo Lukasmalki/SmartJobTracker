@@ -58,8 +58,8 @@ export default function Register() {
         <button type="submit">Registrera</button>
       </form>
 
-      <p>Har du inget konto? Registrera dig här</p>
-      <Link to="/register">Skapa konto</Link>
+      <p>Har du ett konto?</p>
+      <Link to="/login">Logga in</Link>
     </div>
   );
 }
