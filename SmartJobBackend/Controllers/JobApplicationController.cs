@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartJobBackend.DTOs;
 using SmartJobBackend.Models;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,11 +22,19 @@ namespace SmartJobBackend.Controllers
 			_db = db;
 		}
 
+		private int GetUserId()
+		{
+			var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+			return int.Parse(claim!.Value);
+		}
+
 		//GET
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<JobApplicationResponse>>> GetAll()
 		{
+			var userId = GetUserId();
 			var result = await _db.JobApplications
+				.Where(j => j.UserId == userId)
 				.Select(a => new JobApplicationResponse(
 					a.Id, a.Company, a.Role, a.Status, a.AppliedDate, a.Notes
 				))
@@ -43,7 +52,8 @@ namespace SmartJobBackend.Controllers
 				Company = request.Company,
 				Role = request.Role,
 				AppliedDate = request.AppliedDate,
-				Notes = request.Notes
+				Notes = request.Notes,
+				UserId = GetUserId()
 			};
 
 			_db.JobApplications.Add(app);
@@ -60,7 +70,7 @@ namespace SmartJobBackend.Controllers
 		[HttpPut("{id}")]
 		public async Task<ActionResult<JobApplicationResponse>> Update(Guid id, [FromBody] UpdateJobApplicationRequest request)
 		{
-			var app = await _db.JobApplications.FindAsync(id);
+			var app = await _db.JobApplications.FirstOrDefaultAsync(j => j.Id == id && j.UserId == GetUserId());
 
 			if (app == null)
 			{
@@ -86,7 +96,7 @@ namespace SmartJobBackend.Controllers
 		[HttpDelete("{id}")]
 		public async Task<ActionResult> Delete(Guid id)
 		{
-			var app = await _db.JobApplications.FindAsync(id);
+			var app = await _db.JobApplications.FirstOrDefaultAsync(j => j.Id == id && j.UserId == GetUserId());
 
 			if (app == null)
 			{

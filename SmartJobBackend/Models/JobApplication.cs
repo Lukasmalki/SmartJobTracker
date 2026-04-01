@@ -3,6 +3,7 @@
 	public class JobApplication
 	{
 		public Guid Id { get; set; } = Guid.NewGuid();
+		public int UserId { get; set; }
 		public string Company { get; set; } = string.Empty;
 		public string Role { get; set; } = string.Empty;
 		public string Status { get; set; } = "Applied";
