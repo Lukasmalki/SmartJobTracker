@@ -26,6 +26,7 @@ namespace SmartJobBackend.Services
 
 			var user = new User
 			{
+				Username = dto.Username,
 				Email = dto.Email,
 				PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
 			};
