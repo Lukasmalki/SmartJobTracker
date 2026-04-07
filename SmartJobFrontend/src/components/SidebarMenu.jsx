@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function SidebarMenu() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -37,11 +37,10 @@ function SidebarMenu() {
 
       <div className="signout-container">
         <div className="accountinfo-container">
-          <p className="fullname">Lukas Malki</p>
-          <p className="email">lukasandremalki@hotmail.com</p>
-          <button onClick={handleLogout}>Sign out</button>
+          <p className="fullname">{user.username}</p>
+          <p className="email">{user.email}</p>
         </div>
-        <div className="signout">
+        <div onClick={handleLogout} className="signout">
           <FaSignOutAlt className="logo" />
           <span>Sign out</span>
         </div>
