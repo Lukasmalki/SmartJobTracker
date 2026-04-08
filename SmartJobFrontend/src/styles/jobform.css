@@ -25,7 +25,7 @@
     user-select: none;
 }
 
-.form div {
+.form > div {
     display: flex;
     flex-direction: column;
 }
@@ -75,15 +75,33 @@
     resize: vertical;
 }
 
+.jobform-btns {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: end;
+    gap: 10px;
+}
+
 .submit-btn {
     background: rgb(102, 148, 248);
     color: white;
     border: none;
-    align-self: end;
 }
 
 .submit-btn:hover {
     filter: brightness(0.9);
+}
+
+.delete-btn {
+    border: 1px solid rgb(224, 224, 224);
+    color: rgb(197, 0, 0);
+    /* background: white; */
+}
+
+.delete-btn:hover {
+    filter: brightness(0.9);
+    border-color: rgb(224, 224, 224);
+    outline: none;
 }
 
 .divider-jobform {

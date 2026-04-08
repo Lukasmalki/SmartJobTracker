@@ -1,7 +1,13 @@
 import { useState } from "react";
 import "../styles/jobform.css";
 
-function JobForm({ initialData = {}, onSubmit }) {
+function JobForm({
+  initialData = {},
+  onSubmit,
+  submitLabel = "Submit",
+  onDelete,
+  titleLabel = "Add application",
+}) {
   const [formData, setFormData] = useState({
     company: initialData.company || "",
     role: initialData.role || "",
@@ -16,7 +22,7 @@ function JobForm({ initialData = {}, onSubmit }) {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <div className="title">Add application</div>
+      <div className="title">{titleLabel}</div>
 
       <hr className="divider-jobform" />
 
@@ -47,7 +53,7 @@ function JobForm({ initialData = {}, onSubmit }) {
       </div>
 
       <div>
-        <label>Date</label>
+        <label>Applied date</label>
         <input
           className="date-input"
           type="date"
@@ -72,9 +78,17 @@ function JobForm({ initialData = {}, onSubmit }) {
 
       <hr className="divider-jobform" />
 
-      <button className="submit-btn" type="submit">
-        Submit
-      </button>
+      <div className="jobform-btns">
+        {onDelete && (
+          <button className="delete-btn" type="button" onClick={onDelete}>
+            Delete
+          </button>
+        )}
+
+        <button className="submit-btn" type="submit">
+          {submitLabel}
+        </button>
+      </div>
     </form>
   );
 }

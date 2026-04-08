@@ -9,6 +9,7 @@ import {
   updateJobApplication,
   deleteJobApplication,
 } from "../api/jobApplication";
+import JobForm from "../components/JobForm";
 
 function EditJobApplication() {
   const { id } = useParams();
@@ -36,14 +37,10 @@ function EditJobApplication() {
     load();
   }, [id, token]);
 
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSave = async () => {
+  const handleSave = async (data) => {
     setSaving(true);
     try {
-      await updateJobApplication(id, form, token);
+      await updateJobApplication(id, data, token);
       navigate("/dashboard");
     } catch (err) {
       console.error(err);
@@ -70,30 +67,22 @@ function EditJobApplication() {
     <div className="jobdetailsapplication-page">
       <SidebarMenu />
 
-      <form>
-        <div>
-          <input name="company" value={form.company} onChange={handleChange} />
-          <input name="role" value={form.role} onChange={handleChange} />
-
-          <button onClick={handleSave} disabled={saving}>
-            {saving ? "Saving..." : "Save changes"}
-          </button>
-
-          <button
-            className="jobdetails-btn delete"
-            onClick={() => setIsModalOpen(true)}
-          >
-            Delete
-          </button>
-
-          {isModalOpen && (
-            <ConfirmModal
-              onConfirm={handleDelete}
-              onCancel={() => setIsModalOpen(false)}
-            />
-          )}
-        </div>
-      </form>
+      <div className="jobdetails-container">
+        <JobForm
+          initialData={form}
+          onSubmit={handleSave}
+          submitLabel="Save changes"
+          titleLabel="Edit application"
+          onDelete={() => setIsModalOpen(true)}
+        ></JobForm>
+      </div>
+      {isModalOpen && (
+        <ConfirmModal
+          id={id}
+          onConfirm={handleDelete}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 }
