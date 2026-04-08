@@ -15,6 +15,7 @@
 
 .job-item-info {
     margin-bottom: 30px;
+    word-break: break-word;
 }
 
 .company {
@@ -66,4 +67,17 @@
 
 .delete:hover {
     border: 1px solid rgb(230, 230, 230);
+}
+
+.notes-preview {
+    background: rgb(243, 243, 243);
+    border-radius: 5px;
+    padding: 10px 12px;
+    margin: 0;
+    font-size: 13px;
+    color: rgb(105, 105, 105);
+}
+
+.notes-preview p {
+    margin: 0;
 }

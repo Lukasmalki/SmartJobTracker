@@ -9,6 +9,11 @@ function JobItem({ job, onDelete }) {
         <hr className="divider-jobitem" />
         <p className="role">{job.role}</p>
         <p className="applied-date">Applied on {job.appliedDate}</p>
+        <p className="notes-preview">
+          {job.notes
+            ? job.notes.slice(0, 60) + (job.notes.length > 60 ? "..." : "")
+            : "No notes"}
+        </p>
       </div>
 
       <div className="edit-delete-btns">
