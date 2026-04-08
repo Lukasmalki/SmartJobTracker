@@ -56,8 +56,8 @@
     width: 100%;
     border: 1px solid rgb(215, 215, 215);
     border-radius: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 14px;
     color: rgb(68, 68, 68);
 }
@@ -110,4 +110,28 @@
     height: 1px;
     background: #e5e7eb;
     flex-shrink: 0;
+}
+
+.date-status-container {
+    display: flex;
+    flex-direction: row !important;
+    gap: 40px
+}
+
+.date-status-container div {
+    width: 100%;
+    gap: 50px;
+}
+
+.status-select {
+    margin-top: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 45px;
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 14px;
+    color: rgb(68, 68, 68);
+    background: white;
 }

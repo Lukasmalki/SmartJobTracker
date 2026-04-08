@@ -5,7 +5,12 @@ function JobItem({ job, onDelete }) {
   return (
     <div className="job-item">
       <div className="job-item-info">
-        <p className="company">{job.company}</p>
+        <div className="job-item-title-status">
+          <p className="company">{job.company}</p>
+          <span className={`status-badge status-${job.status?.toLowerCase()}`}>
+            {job.status}
+          </span>
+        </div>
         <hr className="divider-jobitem" />
         <p className="role">{job.role}</p>
         <p className="applied-date">Applied on {job.appliedDate}</p>

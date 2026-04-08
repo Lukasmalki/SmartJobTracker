@@ -13,6 +13,7 @@ function JobForm({
     role: initialData.role || "",
     appliedDate: initialData.appliedDate || "",
     notes: initialData.notes || "",
+    status: initialData.status || "Applied",
   });
 
   const handleSubmit = (e) => {
@@ -52,17 +53,35 @@ function JobForm({
         />
       </div>
 
-      <div>
-        <label>Applied date</label>
-        <input
-          className="date-input"
-          type="date"
-          required
-          value={formData.appliedDate}
-          onChange={(e) =>
-            setFormData({ ...formData, appliedDate: e.target.value })
-          }
-        />
+      <div className="date-status-container">
+        <div>
+          <label>Applied date</label>
+          <input
+            className="date-input"
+            type="date"
+            required
+            value={formData.appliedDate}
+            onChange={(e) =>
+              setFormData({ ...formData, appliedDate: e.target.value })
+            }
+          />
+        </div>
+
+        <div>
+          <label>Status</label>
+          <select
+            className="status-select"
+            value={formData.status}
+            onChange={(e) =>
+              setFormData({ ...formData, status: e.target.value })
+            }
+          >
+            <option>Applied</option>
+            <option>Interview</option>
+            <option>Offer</option>
+            <option>Rejected</option>
+          </select>
+        </div>
       </div>
 
       <div>

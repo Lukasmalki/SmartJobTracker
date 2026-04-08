@@ -71,6 +71,7 @@ namespace SmartJobBackend.Controllers
 				Role = request.Role,
 				AppliedDate = request.AppliedDate,
 				Notes = request.Notes,
+				Status = request.Status,
 				UserId = GetUserId()
 			};
 
@@ -100,6 +101,7 @@ namespace SmartJobBackend.Controllers
 			app.Role = request.Role;
 			app.AppliedDate = request.AppliedDate;
 			app.Notes = request.Notes;
+			app.Status = request.Status;
 
 			await _db.SaveChangesAsync();
 
