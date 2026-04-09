@@ -4,6 +4,7 @@
 		string Company,
 		string Role,
 		DateOnly AppliedDate,
-        string? Notes = null
+        string? Notes = null,
+		string Status = "Applied"
 	);
 }

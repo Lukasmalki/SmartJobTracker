@@ -34,7 +34,7 @@ namespace SmartJobBackend.Services
 			_db.Users.Add(user);
 			await _db.SaveChangesAsync();
 
-			return new AuthResponseDTO(GenerateToken(user), user.Email);
+			return new AuthResponseDTO(GenerateToken(user), user.Email, user.Username);
 		}
 
 		public async Task<AuthResponseDTO?> Login(LoginDTO dto)
@@ -44,7 +44,7 @@ namespace SmartJobBackend.Services
 			if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
 				return null; // Fel email eller lösenord
 
-			return new AuthResponseDTO(GenerateToken(user), user.Email);
+			return new AuthResponseDTO(GenerateToken(user), user.Email, user.Username);
 		}
 
 		private string GenerateToken(User user)

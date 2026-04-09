@@ -66,7 +66,7 @@
 
 .signout-container {
   flex: 2;
-  padding: 0 20px 20px 20px;
+  /* padding: 0 20px 20px 20px; */
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -74,6 +74,7 @@
 
 .accountinfo-container {
   margin-bottom: 10px;
+  padding: 0 20px 20px 20px;
 }
 
 .accountinfo-container p {
@@ -96,6 +97,7 @@
   background: rgb(65, 65, 65);
   color: white;
   height: 60px;
+  padding: 0 20px 0 20px;
 }
 
 .signout:hover {

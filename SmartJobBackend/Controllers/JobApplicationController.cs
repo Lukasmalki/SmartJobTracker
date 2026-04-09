@@ -28,7 +28,7 @@ namespace SmartJobBackend.Controllers
 			return int.Parse(claim!.Value);
 		}
 
-		//GET
+		//GET ALL
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<JobApplicationResponse>>> GetAll()
 		{
@@ -43,6 +43,24 @@ namespace SmartJobBackend.Controllers
 			return Ok(result);
 		}
 
+		// GET ONE
+		[HttpGet("{id}")]
+		public async Task<ActionResult<IEnumerable<JobApplicationResponse>>> GetById(Guid id)
+		{
+			var app = await _db.JobApplications
+				.FirstOrDefaultAsync(j => j.Id == id && j.UserId == GetUserId());
+
+			if (app == null)
+			{
+				return NotFound($"No job application found with Id {id}");
+			}
+
+			var response = new JobApplicationResponse(
+				app.Id, app.Company, app.Role, app.Status, app.AppliedDate, app.Notes
+			);
+			return Ok(response);
+		}
+
 		//POST
 		[HttpPost]
 		public async Task<ActionResult<JobApplicationResponse>> Create([FromBody] CreateJobApplicationRequest request)
@@ -53,6 +71,7 @@ namespace SmartJobBackend.Controllers
 				Role = request.Role,
 				AppliedDate = request.AppliedDate,
 				Notes = request.Notes,
+				Status = request.Status,
 				UserId = GetUserId()
 			};
 
@@ -82,6 +101,7 @@ namespace SmartJobBackend.Controllers
 			app.Role = request.Role;
 			app.AppliedDate = request.AppliedDate;
 			app.Notes = request.Notes;
+			app.Status = request.Status;
 
 			await _db.SaveChangesAsync();
 

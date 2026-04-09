@@ -27,7 +27,7 @@ export default function Login() {
     }
 
     const data = await res.json();
-    login(data.token, { email: data.email });
+    login(data.token, { email: data.email, username: data.username });
     navigate("/dashboard");
   };
 

@@ -1,12 +1,19 @@
 import { useState } from "react";
 import "../styles/jobform.css";
 
-function JobForm({ initialData = {}, onSubmit }) {
+function JobForm({
+  initialData = {},
+  onSubmit,
+  submitLabel = "Submit",
+  onDelete,
+  titleLabel = "Add application",
+}) {
   const [formData, setFormData] = useState({
     company: initialData.company || "",
     role: initialData.role || "",
     appliedDate: initialData.appliedDate || "",
     notes: initialData.notes || "",
+    status: initialData.status || "Applied",
   });
 
   const handleSubmit = (e) => {
@@ -16,7 +23,7 @@ function JobForm({ initialData = {}, onSubmit }) {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <div className="title">Add application</div>
+      <div className="title">{titleLabel}</div>
 
       <hr className="divider-jobform" />
 
@@ -46,17 +53,35 @@ function JobForm({ initialData = {}, onSubmit }) {
         />
       </div>
 
-      <div>
-        <label>Date</label>
-        <input
-          className="date-input"
-          type="date"
-          required
-          value={formData.appliedDate}
-          onChange={(e) =>
-            setFormData({ ...formData, appliedDate: e.target.value })
-          }
-        />
+      <div className="date-status-container">
+        <div>
+          <label>Applied date</label>
+          <input
+            className="date-input"
+            type="date"
+            required
+            value={formData.appliedDate}
+            onChange={(e) =>
+              setFormData({ ...formData, appliedDate: e.target.value })
+            }
+          />
+        </div>
+
+        <div>
+          <label>Status</label>
+          <select
+            className="status-select"
+            value={formData.status}
+            onChange={(e) =>
+              setFormData({ ...formData, status: e.target.value })
+            }
+          >
+            <option>Applied</option>
+            <option>Interview</option>
+            <option>Offer</option>
+            <option>Rejected</option>
+          </select>
+        </div>
       </div>
 
       <div>
@@ -72,9 +97,17 @@ function JobForm({ initialData = {}, onSubmit }) {
 
       <hr className="divider-jobform" />
 
-      <button className="submit-btn" type="submit">
-        Submit
-      </button>
+      <div className="jobform-btns">
+        {onDelete && (
+          <button className="delete-btn" type="button" onClick={onDelete}>
+            Delete
+          </button>
+        )}
+
+        <button className="submit-btn" type="submit">
+          {submitLabel}
+        </button>
+      </div>
     </form>
   );
 }
