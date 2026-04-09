@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import "../styles/login.css";
+import InfoPanel from "../components/InfoPanel";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     setLoading(true);
 
     try {
@@ -42,27 +44,19 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="login-container">
-        <div className="login-info-container">
-          <div className="login-header">
-            <p className="login-smartjob">SmartJob&nbsp;</p>
-            <p className="login-tracker">tracker</p>
-          </div>
-
-          <div>
-            <p className="login-info">
-              Keep all your job
-              <br /> applications <br /> organized in one place.
-            </p>
-          </div>
-
-          <div>
-            <ul className="login-ul">
-              <li>Track application status</li>
-              <li>Add notes and follow-ups</li>
-              <li>Never miss an opportunity</li>
-            </ul>
-          </div>
-        </div>
+        <InfoPanel
+          textInfo={
+            <>
+              Keep all your job <br /> applications <br /> organized in one
+              place.
+            </>
+          }
+          ulItems={[
+            "Track application status",
+            "Add notes and follow-ups",
+            "Never miss an opportunity",
+          ]}
+        />
 
         <div className="login-form-container">
           <form className="login-form" onSubmit={handleSubmit}>
@@ -71,12 +65,14 @@ export default function Login() {
             <label>Email</label>
             <input
               type="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <label>Password</label>
             <input
               type="password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

@@ -1,0 +1,50 @@
+.info-container {
+  flex: 1; 
+  background: rgb(102, 148, 248);
+  display: flex;
+  flex-direction: column;
+  padding-left: 100px;
+  padding-right: 50px;
+  justify-content: center;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.info-smartjob {
+  font-size: 42px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.info-tracker {
+  font-size: 18px;
+  margin: 0 0 20px 0;
+}
+
+.info-text {
+    color: rgb(242, 242, 242);
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.info-ul {
+    font-size: 18px;
+    list-style: none;
+    padding: 0;
+}
+
+.info-ul li {
+    color: rgb(242, 242, 242);
+    margin-bottom: 7px;
+}
+
+
+.info-ul li::before {
+  content: "•";
+  font-size: 25px;
+  margin-right: 14px;
+}
