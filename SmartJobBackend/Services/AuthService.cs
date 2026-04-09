@@ -27,7 +27,7 @@ namespace SmartJobBackend.Services
 			var user = new User
 			{
 				Username = dto.Username,
-				Email = dto.Email,
+				Email = dto.Email.ToLower(),
 				PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
 			};
 
@@ -39,7 +39,7 @@ namespace SmartJobBackend.Services
 
 		public async Task<AuthResponseDTO?> Login(LoginDTO dto)
 		{
-			var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+			var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == dto.Email.ToLower());
 
 			if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
 				return null; // Fel email eller lösenord

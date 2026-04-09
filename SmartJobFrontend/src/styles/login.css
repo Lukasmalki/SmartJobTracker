@@ -1,0 +1,126 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    height: 100vh;
+    background: linear-gradient(
+    135deg,
+    #f2f2f2 0%,
+    #e6e6e6 100%
+    );
+}
+
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.login-info-container {
+  flex: 1; 
+  background: rgb(102, 148, 248);
+  display: flex;
+  flex-direction: column;
+  padding-left: 100px;
+  padding-right: 50px;
+  justify-content: center;
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.login-smartjob {
+  font-size: 42px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.login-tracker {
+  font-size: 18px;
+  margin: 0 0 20px 0;
+}
+
+.login-info {
+    color: rgb(242, 242, 242);
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.login-ul {
+    font-size: 18px;
+    list-style: none;
+    padding: 0;
+}
+
+.login-ul li {
+    color: rgb(242, 242, 242);
+    margin-bottom: 7px;
+}
+
+
+li::before {
+  content: "•";
+  font-size: 25px;
+  margin-right: 14px;
+}
+
+.login-form-container {
+  flex: 1.5;
+  background: white;
+  padding: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    margin-top: 25px;
+    font-weight: 500;
+}
+
+.login-form input {
+    height: 45px;
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 5px;
+    background: rgb(242, 242, 242);
+    font-size: 16x;
+    padding: 0 10px 0 10px;
+}
+
+.login-form input:focus {
+    border: 1px solid rgb(102, 148, 248);
+    outline: none;
+}
+
+.signin-btn {
+    background: rgb(102, 148, 248);
+    height: 48px;
+    margin-top: 25px;
+    color: white;
+    font-size: 18px;
+}
+
+.signin-btn:focus {
+    outline: none;
+}
+
+.noaccount-info {
+    color: rgb(116, 116, 116);
+    text-align: center;
+    margin-top: 25px;
+}
