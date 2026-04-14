@@ -26,7 +26,7 @@ namespace SmartJobBackend
 			builder.Services.AddCors(options =>
 			{
 				options.AddPolicy("AllowReact",
-					p => p.WithOrigins("http://localhost:5173", "https://localhost:5173")
+					p => p.WithOrigins("http://localhost:5173", "https://localhost:5173", "https://smartjobtracker-frontend.vercel.app/")
 						  .AllowAnyHeader()
 						  .AllowAnyMethod());
 			});
