@@ -15,10 +15,35 @@ export default function Register() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const validate = () => {
+    if (username.length < 3) {
+      setError("Username must be at least 3 characters.");
+      return false;
+    }
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+      setError("Username can only contain letters, numbers and underscores.");
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Please enter a valid email.");
+      return false;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
+
+    if (!validate()) {
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch(`${API_URL}/auth/register`, {
@@ -32,7 +57,13 @@ export default function Register() {
       });
 
       if (!res.ok) {
-        setError("Email redan registrerad.");
+        const message = await res.text();
+        if (message === "USERNAME_TAKEN") {
+          setError("Username is already taken");
+        } else {
+          setError("Email already taken.");
+        }
+        setLoading(false);
         return;
       }
 
@@ -40,7 +71,7 @@ export default function Register() {
       login(data.token, { email: data.email, username: data.username });
       navigate("/dashboard");
     } catch (err) {
-      setError("Något gick fel");
+      setError("Something went wrong");
     } finally {
       setLoading(false);
     }

@@ -21,9 +21,15 @@ namespace SmartJobBackend.Controllers
 		[HttpPost("register")]
 		public async Task<IActionResult> Register(RegisterDTO dto)
 		{
-			var result = await _authService.Register(dto);
-			if (result == null)
-				return Conflict("Email redan registrerad.");
+			var (error, result) = await _authService.Register(dto);
+			if (error == "USERNAME_TAKEN")
+			{
+				return Conflict("USERNAME_TAKEN");
+			}
+			if (error == "EMAIL_TAKEN")
+			{
+				return Conflict("EMAIL_TAKEN");
+			}
 			return Ok(result);
 		}
 
