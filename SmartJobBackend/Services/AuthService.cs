@@ -19,10 +19,13 @@ namespace SmartJobBackend.Services
 			_config = config;
 		}
 
-		public async Task<AuthResponseDTO?> Register(RegisterDTO dto)
+		public async Task<(string? Error, AuthResponseDTO? Response)> Register(RegisterDTO dto)
 		{
-			if (await _db.Users.AnyAsync(u => u.Email == dto.Email))
-				return null; // Email redan tagen
+			if (await _db.Users.AnyAsync(u => u.Username == dto.Username))
+				return ("USERNAME_TAKEN", null); // Användarnamn redan taget
+
+			if (await _db.Users.AnyAsync(u => u.Email == dto.Email.ToLower()))
+				return ("EMAIL_TAKEN", null); // Email redan tagen
 
 			var user = new User
 			{
@@ -34,7 +37,7 @@ namespace SmartJobBackend.Services
 			_db.Users.Add(user);
 			await _db.SaveChangesAsync();
 
-			return new AuthResponseDTO(GenerateToken(user), user.Email, user.Username);
+			return (null, new AuthResponseDTO(GenerateToken(user), user.Email, user.Username));
 		}
 
 		public async Task<AuthResponseDTO?> Login(LoginDTO dto)
