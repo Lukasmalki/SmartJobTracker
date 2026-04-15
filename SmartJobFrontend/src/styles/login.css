@@ -49,6 +49,7 @@
     background: rgb(242, 242, 242);
     font-size: 16x;
     padding: 0 10px 0 10px;
+    width: 100%;
 }
 
 .login-form input:focus {
@@ -72,4 +73,15 @@
     color: rgb(116, 116, 116);
     text-align: center;
     margin-top: 25px;
+}
+
+.login-password-input {
+    position: relative;
+}
+
+.login-password-input span {
+    position: absolute;
+    right: 0;
+    top: 30%;
+    cursor: pointer;
 }

@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import "../styles/login.css";
 import InfoPanel from "../components/InfoPanel";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Login() {
@@ -13,6 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [type, setType] = useState("password");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +41,10 @@ export default function Login() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleToggle = () => {
+    setType(type === "password" ? "text" : "password");
   };
 
   return (
@@ -70,12 +76,21 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <label>Password</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="login-password-input">
+              <input
+                type={type}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span onClick={handleToggle}>
+                {type === "password" ? (
+                  <FaEyeSlash size={20} />
+                ) : (
+                  <FaEye size={20} />
+                )}
+              </span>
+            </div>
             <button className="signin-btn" type="submit" disabled={loading}>
               {loading ? "Signing in..." : "Sign in"}
             </button>

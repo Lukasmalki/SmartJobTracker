@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import InfoPanel from "../components/InfoPanel";
 import "../styles/register.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Register() {
@@ -14,6 +15,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [type, setType] = useState("password");
 
   const validate = () => {
     if (username.length < 3) {
@@ -77,6 +79,10 @@ export default function Register() {
     }
   };
 
+  const handleToggle = () => {
+    setType(type === "password" ? "text" : "password");
+  };
+
   return (
     <div className="register-page">
       <div className="register-container">
@@ -108,12 +114,21 @@ export default function Register() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <label>Password</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="register-password-input">
+              <input
+                type={type}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span onClick={handleToggle}>
+                {type === "password" ? (
+                  <FaEyeSlash size={20} />
+                ) : (
+                  <FaEye size={20} />
+                )}
+              </span>
+            </div>
             <button className="register-btn" type="submit" disabled={loading}>
               {loading ? "Creating your account..." : "Register"}
             </button>
