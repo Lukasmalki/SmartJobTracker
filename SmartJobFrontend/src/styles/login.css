@@ -18,12 +18,12 @@
 }
 
 .login-form-container {
-  flex: 1.5;
-  background: white;
-  padding: 75px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    flex: 1.5;
+    background: white;
+    padding: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .login-form {
@@ -50,6 +50,7 @@
     font-size: 16x;
     padding: 0 10px 0 10px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .login-form input:focus {
@@ -81,7 +82,7 @@
 
 .login-password-input span {
     position: absolute;
-    right: 0;
+    right: 18px;
     top: 30%;
     cursor: pointer;
 }

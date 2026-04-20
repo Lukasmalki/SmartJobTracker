@@ -19,6 +19,7 @@ function Dashboard() {
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState();
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   const loadApplications = async () => {
     try {
@@ -49,13 +50,18 @@ function Dashboard() {
     }
   };
 
-  const filtered = applications.filter(
-    (item) =>
+  const filtered = applications.filter((item) => {
+    const matchesSearch =
       item.company.toLowerCase().includes(search.trim().toLowerCase()) ||
       item.role.toLowerCase().includes(search.trim().toLowerCase()) ||
       item.appliedDate.toLowerCase().includes(search.trim().toLowerCase()) ||
-      item.notes.toLowerCase().includes(search.trim().toLowerCase()),
-  );
+      item.notes.toLowerCase().includes(search.trim().toLowerCase()) ||
+      item.status.toLowerCase().includes(search.trim().toLowerCase());
+
+    const matchesStatus = !selectedStatus || item.status === selectedStatus;
+
+    return matchesSearch && matchesStatus;
+  });
 
   useEffect(() => {
     loadApplications();
@@ -70,8 +76,21 @@ function Dashboard() {
 
       <div className="dashboard-container">
         <div className="applications-title-search">
-          <div className="title">
+          <div className="title-container">
             <p>Job Applications</p>
+
+            <select
+              className="status-filter"
+              name="selectedStatus"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="Applied">Applied</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+            </select>
           </div>
 
           <div className="search">

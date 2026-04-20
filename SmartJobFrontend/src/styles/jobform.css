@@ -23,6 +23,9 @@
 
 .title {
     user-select: none;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(68, 68, 68);
 }
 
 .form > div {

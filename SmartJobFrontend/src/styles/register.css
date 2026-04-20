@@ -48,8 +48,9 @@
     border-radius: 5px;
     background: rgb(242, 242, 242);
     font-size: 16x;
-    padding: 0 10px 0 10px;
+    padding: 0 55px 0 10px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .register-form input:focus {
@@ -81,7 +82,7 @@
 
 .register-password-input span {
     position: absolute;
-    right: 0;
+    right: 18px;
     top: 30%;
     cursor: pointer;
 }
