@@ -52,6 +52,11 @@
     color: rgb(68, 68, 68);
 }
 
+.company-input:focus, .role-input:focus {
+    outline: none;
+    border-color: rgb(102, 148, 248);
+}
+
 .date-input {
     margin-top: 5px;
     height: 45px;
@@ -65,6 +70,11 @@
     color: rgb(68, 68, 68);
 }
 
+.date-input:focus {
+    outline: none;
+    border-color: rgb(102, 148, 248);
+}
+
 .notes-input {
     margin-top: 5px;
     width: 100%;
@@ -76,6 +86,11 @@
     font-size: 14px;
     box-sizing: border-box;
     resize: vertical;
+}
+
+.notes-input {
+    outline: none;
+    border-color: rgb(102, 148, 248);
 }
 
 .jobform-btns {
@@ -95,16 +110,25 @@
     filter: brightness(0.9);
 }
 
+.submit-btn:focus {
+    outline: none;
+    border-color: rgb(102, 148, 248);
+}
+
 .delete-btn {
     border: 1px solid rgb(224, 224, 224);
     color: rgb(197, 0, 0);
-    /* background: white; */
 }
 
 .delete-btn:hover {
     filter: brightness(0.9);
     border-color: rgb(224, 224, 224);
     outline: none;
+}
+
+.delete-btn:focus {
+    outline: none;
+    border-color: rgb(102, 148, 248);
 }
 
 .divider-jobform {
@@ -137,4 +161,9 @@
     font-size: 14px;
     color: rgb(68, 68, 68);
     background: white;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: rgb(102, 148, 248);
 }

@@ -4,11 +4,7 @@
     align-items: center;
     user-select: none;
     height: 100vh;
-    background: linear-gradient(
-    135deg,
-    #f2f2f2 0%,
-    #e6e6e6 100%
-    );
+    background: rgb(28, 28, 35);
 }
 
 .register-container {
@@ -19,7 +15,7 @@
 
 .register-form-container {
   flex: 1.5;
-  background: white;
+  background: rgb(34, 34, 42);
   padding: 75px;
   display: flex;
   flex-direction: column;
@@ -32,21 +28,24 @@
 }
 
 .register-form h2 {
+    color: white;
     font-size: 28px;
     margin: 0;
 }
 
 .register-form label {
+    color: rgb(180, 180, 200);
     margin-bottom: 5px;
     margin-top: 25px;
     font-weight: 500;
 }
 
 .register-form input {
+    color: white;
     height: 45px;
-    border: 1px solid rgb(210, 210, 210);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
-    background: rgb(242, 242, 242);
     font-size: 16x;
     padding: 0 55px 0 10px;
     width: 100%;
@@ -71,7 +70,7 @@
 }
 
 .accountinfo {
-    color: rgb(116, 116, 116);
+    color: rgb(120, 120, 140);
     text-align: center;
     margin-top: 25px;
 }
