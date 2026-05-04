@@ -82,11 +82,11 @@
 }
 
 .applications-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 50px;
-  align-items: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 50px;
+    align-items: start;
 }
 
 .divider-dashboard {
@@ -94,28 +94,60 @@
     height: 1px;
     background: #d8d8d8;
     margin-top: 17px;
-}
-
-.status-filter {
-    height: 38.4px;
-    border: 1px solid rgb(198, 198, 198);
-    border-radius: 5px;
-    padding: 0 12px;
-    font-size: 15px;
-    color: rgb(68, 68, 68);
-    background: rgb(243, 243, 243);
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 32px;
-    cursor: pointer;
+    margin-bottom: 25px;
 }
 
 .status-filter:focus {
     outline: none;
     border-color: rgb(102, 148, 248);
 }
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.06);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.15s ease;
+    user-select: none;
+}
+
+.stat-card:hover {
+    border-color: rgb(198, 198, 198);
+}
+
+.stat-active {
+    border-color: rgb(102, 148, 248) !important;
+}
+
+.stat-label {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgb(160, 160, 160);
+}
+
+.stat-number {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(68, 68, 68);
+}
+
+.stat-applied { color: rgb(59, 98, 199); }
+.stat-interview { color: rgb(176, 120, 0); }
+.stat-offer { color: rgb(45, 122, 58); }
+.stat-rejected { color: rgb(176, 48, 32); }
 
 @media (min-width: 1600px) {
   .applications-overview {

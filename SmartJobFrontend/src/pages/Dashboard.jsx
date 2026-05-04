@@ -108,6 +108,62 @@ function Dashboard() {
         </div>
         <hr className="divider-dashboard" />
 
+        <div className="stats-container">
+          <div
+            className={`stat-card ${selectedStatus === "" ? "stat-active" : ""}`}
+            onClick={() => setSelectedStatus("")}
+          >
+            <p className="stat-label">Total</p>
+            <p className="stat-number">{applications.length}</p>
+          </div>
+          <div
+            className={`stat-card ${selectedStatus === "Applied" ? "stat-active" : ""}`}
+            onClick={() =>
+              setSelectedStatus(selectedStatus === "Applied" ? "" : "Applied")
+            }
+          >
+            <p className="stat-label stat-applied">Applied</p>
+            <p className="stat-number">
+              {applications.filter((a) => a.status === "Applied").length}
+            </p>
+          </div>
+          <div
+            className={`stat-card ${selectedStatus === "Interview" ? "stat-active" : ""}`}
+            onClick={() =>
+              setSelectedStatus(
+                selectedStatus === "Interview" ? "" : "Interview",
+              )
+            }
+          >
+            <p className="stat-label stat-interview">Interview</p>
+            <p className="stat-number">
+              {applications.filter((a) => a.status === "Interview").length}
+            </p>
+          </div>
+          <div
+            className={`stat-card ${selectedStatus === "Offer" ? "stat-active" : ""}`}
+            onClick={() =>
+              setSelectedStatus(selectedStatus === "Offer" ? "" : "Offer")
+            }
+          >
+            <p className="stat-label stat-offer">Offer</p>
+            <p className="stat-number">
+              {applications.filter((a) => a.status === "Offer").length}
+            </p>
+          </div>
+          <div
+            className={`stat-card ${selectedStatus === "Rejected" ? "stat-active" : ""}`}
+            onClick={() =>
+              setSelectedStatus(selectedStatus === "Rejected" ? "" : "Rejected")
+            }
+          >
+            <p className="stat-label stat-rejected">Rejected</p>
+            <p className="stat-number">
+              {applications.filter((a) => a.status === "Rejected").length}
+            </p>
+          </div>
+        </div>
+
         <div className="applications-overview">
           {filtered.map((job) => (
             <JobItem key={job.id} job={job} onDelete={openDeleteModal} />
