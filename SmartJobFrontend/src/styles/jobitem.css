@@ -88,6 +88,10 @@
     border: 1px solid rgb(230, 230, 230);
 }
 
+.delete:focus {
+    outline: none;
+}
+
 .notes-preview {
     background: rgb(243, 243, 243);
     border-radius: 5px;
