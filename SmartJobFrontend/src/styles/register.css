@@ -73,3 +73,15 @@
     text-align: center;
     margin-top: 25px;
 }
+
+.register-password-input {
+    position: relative;
+}
+
+.register-password-input span {
+    position: absolute;
+    right: 18px;
+    top: 30%;
+    cursor: pointer;
+    color: white;
+}
