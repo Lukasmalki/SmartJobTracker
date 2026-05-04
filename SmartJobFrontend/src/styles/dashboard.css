@@ -1,8 +1,8 @@
 .dashboard-page {
-  min-height: 100vh;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
 }
 
 .dashboard-container {
@@ -20,15 +20,19 @@
     align-items: center;
     justify-content: space-between;
     user-select: none;
+    gap: 20px;
 }
 
-.title {
+.title-container {
     font-size: 28px;
     font-weight: 600;
     color: rgb(68, 68, 68);
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-.title p {
+.title-container p {
     margin: 0;
 }
 
@@ -47,6 +51,11 @@
     padding: 0 12px 0 12px;
     background: rgb(243, 243, 243);
     font-size: 15px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: rgb(102, 148, 248);
 }
 
 .new-application-btn {
