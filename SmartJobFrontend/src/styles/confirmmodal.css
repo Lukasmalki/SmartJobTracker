@@ -58,6 +58,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
+.cancel-delete-btns button:focus {
+    outline: none;
+}
+
 .confirm-delete-btn {
     background: rgb(197, 0, 0);
     color: white;
