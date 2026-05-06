@@ -98,7 +98,7 @@ export default function Register() {
         <div className="register-form-container">
           <form className="register-form" onSubmit={handleSubmit}>
             <h2>Create an account</h2>
-            {error && <p>{error}</p>}
+            {error && <p className="register-error">{error}</p>}
             <label>Username</label>
             <input
               type="text"

@@ -67,7 +67,7 @@ export default function Login() {
         <div className="login-form-container">
           <form className="login-form" onSubmit={handleSubmit}>
             <h2>Welcome back</h2>
-            {error && <p>{error}</p>}
+            {error && <p className="login-error">{error}</p>}
             <label>Email</label>
             <input
               type="email"

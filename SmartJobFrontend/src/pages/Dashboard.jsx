@@ -10,6 +10,7 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ConfirmModal from "../components/ConfirmModal";
 import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 function Dashboard() {
   const { token } = useAuth();
@@ -42,8 +43,10 @@ function Dashboard() {
     try {
       await deleteJobApplication(id, token);
       setApplications((prev) => prev.filter((app) => app.id !== id));
+      toast.success("Application deleted.");
     } catch (err) {
       console.error("Failed to delete: ", err);
+      toast.error("Something went wrong.");
     } finally {
       setIsModalOpen(false);
       setSelectedId(null);
@@ -78,19 +81,6 @@ function Dashboard() {
         <div className="applications-title-search">
           <div className="title-container">
             <p>Job Applications</p>
-
-            <select
-              className="status-filter"
-              name="selectedStatus"
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-            >
-              <option value="">All</option>
-              <option value="Applied">Applied</option>
-              <option value="Interview">Interview</option>
-              <option value="Offer">Offer</option>
-              <option value="Rejected">Rejected</option>
-            </select>
           </div>
 
           <div className="search">
@@ -165,9 +155,30 @@ function Dashboard() {
         </div>
 
         <div className="applications-overview">
-          {filtered.map((job) => (
-            <JobItem key={job.id} job={job} onDelete={openDeleteModal} />
-          ))}
+          {filtered.length === 0 && applications.length === 0 ? (
+            <div className="empty-state">
+              <p className="empty-state-icon">📋</p>
+              <p className="empty-state-title">No applications yet</p>
+              <p className="empty-state-text">
+                Start tracking your job search by adding your first application.
+              </p>
+              <Link to="/create" className="empty-state-btn">
+                + New Application
+              </Link>
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="empty-state">
+              <p className="empty-state-icon">🔍</p>
+              <p className="empty-state-title">No results found</p>
+              <p className="empty-state-text">
+                Try adjusting your search or filter.
+              </p>
+            </div>
+          ) : (
+            filtered.map((job) => (
+              <JobItem key={job.id} job={job} onDelete={openDeleteModal} />
+            ))
+          )}
         </div>
       </div>
 

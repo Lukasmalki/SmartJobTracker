@@ -97,11 +97,6 @@
     margin-bottom: 25px;
 }
 
-.status-filter:focus {
-    outline: none;
-    border-color: rgb(102, 148, 248);
-}
-
 .stats-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -148,6 +143,49 @@
 .stat-interview { color: rgb(176, 120, 0); }
 .stat-offer { color: rgb(45, 122, 58); }
 .stat-rejected { color: rgb(176, 48, 32); }
+
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  margin: 0 0 16px;
+}
+
+.empty-state-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(68, 68, 68);
+  margin: 0 0 8px;
+}
+
+.empty-state-text {
+  font-size: 14px;
+  color: rgb(140, 140, 140);
+  margin: 0 0 20px;
+}
+
+.empty-state-btn {
+  height: 40px;
+  padding: 0 20px;
+  background: rgb(102, 148, 248);
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.empty-state-btn:hover {
+    color: rgb(233, 233, 233);
+}
 
 @media (min-width: 1600px) {
   .applications-overview {
