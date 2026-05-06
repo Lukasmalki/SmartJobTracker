@@ -10,6 +10,7 @@ import {
   deleteJobApplication,
 } from "../api/jobApplication";
 import JobForm from "../components/JobForm";
+import toast from "react-hot-toast";
 
 function EditJobApplication() {
   const { id } = useParams();
@@ -42,8 +43,10 @@ function EditJobApplication() {
     try {
       await updateJobApplication(id, data, token);
       navigate("/dashboard");
+      toast.success("Application edited.");
     } catch (err) {
       console.error(err);
+      toast.error("Something went wrong.");
     } finally {
       setSaving(false);
     }
@@ -53,8 +56,10 @@ function EditJobApplication() {
     try {
       await deleteJobApplication(id, token);
       navigate("/dashboard");
+      toast.success("Application deleted.");
     } catch (err) {
       console.error(err);
+      toast.error("Something went wrong.");
     } finally {
       setIsModalOpen(false);
     }

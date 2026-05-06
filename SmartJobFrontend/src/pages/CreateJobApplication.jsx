@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SidebarMenu from "../components/SidebarMenu";
 import "../styles/createjobapplication.css";
 import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 function CreateJobApplication() {
   const navigate = useNavigate();
@@ -13,12 +14,11 @@ function CreateJobApplication() {
     try {
       const result = await createJobApplication(data, token);
       console.log("Created:", result);
-      alert("Job application created!");
-
       navigate("/dashboard");
+      toast.success("Application created!");
     } catch (err) {
       console.error(err);
-      alert("Error creating job application: " + err.message);
+      toast.error("Something went wrong.");
     }
   };
 
